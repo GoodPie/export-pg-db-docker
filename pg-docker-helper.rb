@@ -1,6 +1,7 @@
 class PgDockerHelper < Formula
   desc "A collection of scripts to help import and export Postgres databases from Docker containers. Primarily used for development and testing migrations."
   homepage "https://github.com/GoodPie/export-pg-db-docker"
+  url "https://github.com/GoodPie/export-pg-db-docker/releases/tag/v1.0.0.0"
   version "1.0.0"
 
   resource "import-pg-db-docker" do
