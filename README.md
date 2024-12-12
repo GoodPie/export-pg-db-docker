@@ -17,19 +17,24 @@ Dumps the database from a Postgres Docker container
 
 2. Run the script to dump the database:
     ```sh 
-    ./export-pg-db-docker.sh <container_name> <db_user> <db_name>
+    ./export-pg-db-docker.sh <container_name> <db_user> <db_name> [directory]
     ```
+
+    - `<container_name>`: Name of the Docker container to pull the database from.
+    - `<db_user>`: Username for the PostgreSQL database.
+    - `<db_password>`: Password for the PostgreSQL database.
 
 3. **Run the script:**
 
     ```sh
-    ./import-pg-db-docker.sh <container_name> <db_user> <db_password> <db_name>
+    ./import-pg-db-docker.sh <container_name> <db_user> <db_password> <db_name> [directory]
     ```
 
     - `<container_name>`: Name of the Docker container to be created.
     - `<db_user>`: Username for the PostgreSQL database.
     - `<db_password>`: Password for the PostgreSQL database.
     - `<db_name>`: Name of the PostgreSQL database.
+    - `[directory]`: Optional directory to store or read the SQL dump file. If not provided, a temporary directory will be used.
 
 4. **Select the SQL dump file:**
 

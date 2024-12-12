@@ -1,17 +1,18 @@
 #!/bin/bash
 
 # Check if all parameters are present
-if [ $# -ne 3 ]; then
-    echo "Usage: $0 <container_name> <db_user> <db_name>"
+if [ $# -lt 3 ] || [ $# -gt 4 ]; then
+    echo "Usage: $0 <container_name> <db_user> <db_name> [directory]"
     exit 1
 fi
 
 container_name=$1
 db_user=$2
 db_name=$3
+directory=${4:-$(mktemp -d)}
 
 # Generate output file name based on date and container name
-output_file="${container_name}_$(date +%Y%m%d_%H%M%S).sql"
+output_file="${directory}/${container_name}_$(date +%Y%m%d_%H%M%S).sql"
 
 # Output the file name
 echo "The database will be exported to: $output_file"

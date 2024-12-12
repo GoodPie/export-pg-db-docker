@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check if all parameters are present
-if [ $# -ne 4 ]; then
-    echo "Usage: $0 <container_name> <db_user> <db_password> <db_name>"
+if [ $# -lt 4 ] || [ $# -gt 5 ]; then
+    echo "Usage: $0 <container_name> <db_user> <db_password> <db_name> [directory]"
     exit 1
 fi
 
@@ -10,12 +10,13 @@ container_name=$1
 db_user=$2
 db_password=$3
 db_name=$4
+directory=${5:-$(mktemp -d)}
 
 # List available .sql files
-echo "Available .sql files:"
-sql_files=(*.sql)
+echo "Available .sql files in $directory:"
+sql_files=("$directory"/*.sql)
 if [ ${#sql_files[@]} -eq 0 ]; then
-    echo "No .sql files found in the current directory."
+    echo "No .sql files found in the directory $directory."
     exit 1
 fi
 
@@ -34,7 +35,7 @@ dump_file="${sql_files[$file_index]}"
 
 # Create a new Docker container
 echo "Creating a new Docker container: $container_name"
-docker run --name "$container_name" -e POSTGRES_USER="$db_user" -e POSTGRES_PASSWORD="$db_password" -e POSTGRES_DB="$db_name" -d postgres
+docker run --name "$container_name" -e POSTGRES_USER="$db_user" -e POSTGRES_PASSWORD="$db_password" -e POSTGRES_DB="$db_name" -d -p 5432:5432 postgres 
 
 # Wait for the container to be ready
 echo "Waiting for the container to be ready..."
