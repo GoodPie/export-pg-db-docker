@@ -9,7 +9,8 @@ fi
 container_name=$1
 db_user=$2
 db_name=$3
-directory=${4:-$(mktemp -d)}
+directory=${4:-~/.pg-db-helper-exports}
+mkdir -p "$directory"}
 
 # Generate output file name based on date and container name
 output_file="${directory}/${container_name}_$(date +%Y%m%d_%H%M%S).sql"

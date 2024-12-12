@@ -10,7 +10,8 @@ container_name=$1
 db_user=$2
 db_password=$3
 db_name=$4
-directory=${5:-$(mktemp -d)}
+directory=${5:-~/.pg-helper-exports}
+mkdir -p "$directory"
 
 # List available .sql files
 echo "Available .sql files in $directory:"
