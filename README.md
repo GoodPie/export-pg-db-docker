@@ -12,7 +12,7 @@ Dumps the database from a Postgres Docker container
 1. Clone the repository:
     ```sh
     git clone https://github.com/goodpie/export-pg-db-docker.git
-    cd export-pg-docker
+    cd export-pg-db-docker
     ```
 
 2. Run the script to dump the database:
